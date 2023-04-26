@@ -11,11 +11,16 @@ int main(void)
     char *str_parse = NULL;
     int num_tokens = 0;
     char **argv;
+    int is_interactive;
 
     while (1)
     {
-        printf("%s", shell_prompt);
-        buffer = read_input();
+        is_interactive = isatty(STDIN_FILENO);
+        if (is_interactive)
+        {
+            printf("%s", shell_prompt);
+        }
+        
         if (buffer == NULL)
             break;
 
