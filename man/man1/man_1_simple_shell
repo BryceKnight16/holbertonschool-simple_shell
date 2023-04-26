@@ -1,0 +1,73 @@
+hsh(1)                           User Commands                          hsh(1)
+
+NAME
+       hsh - a simple shell implementation in C
+
+SYNOPSIS
+       hsh
+
+DESCRIPTION
+       The hsh command starts an interactive shell that reads commands from the
+       standard input and executes them. The shell also supports non-interactive
+       mode, where commands are read from a file or a pipeline.
+
+       The shell implements a subset of the features provided by the standard
+       POSIX shell, including:
+
+       - Running commands with arguments and environment variables
+       - Redirecting input and output using file descriptors
+       - Pipelining commands using the | operator
+       - Running background processes using the & operator
+       - Running shell scripts using the . or source command
+
+       The shell does not support features such as command substitution, shell
+       variables, or shell functions.
+
+OPTIONS
+       The hsh command does not take any command line options.
+
+EXIT STATUS
+       The hsh command returns the following exit statuses:
+
+       0 - Success
+       1 - General error
+       2 - Misuse of shell builtins
+       126 - Command found but not executable
+       127 - Command not found
+       128 - Invalid argument to exit
+       130 - Shell terminated by interrupt signal
+
+EXAMPLES
+       Here are some examples of using the hsh shell:
+
+       $ ./hsh
+       $ ls
+       file1 file2 file3
+       $ echo "Hello, world!"
+       Hello, world!
+       $ exit
+
+       $ echo "ls" | ./hsh
+       file1 file2 file3
+
+       $ cat script.sh
+       ls -l
+       echo "Hello, world!"
+       $ ./hsh script.sh
+       total 12
+       -rw-r--r-- 1 user user 1384 Apr 20 15:23 hsh
+       -rw-r--r-- 1 user user   35 Apr 20 15:26 script.sh
+       -rw-r--r-- 1 user user 1337 Apr 20 15:21 shell.c
+       Hello, world!
+
+AUTHORS
+       The hsh shell was written by [Sourabh Beniwal][Bryce Knight]
+
+REPORTING BUGS
+       If you encounter any bugs or issues with the hsh shell, please report them
+       to Author file on github.
+
+COPYRIGHT
+       The hsh shell is released under the MIT License. See the LICENSE file for
+       more information.
+
