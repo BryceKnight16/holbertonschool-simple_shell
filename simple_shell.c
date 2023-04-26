@@ -26,6 +26,7 @@ int main(void)
     char *str_parse = NULL;
     list_t *head;
     int listt_len;
+	char **argv;
 
     while (1)
     {
@@ -44,7 +45,7 @@ int main(void)
         str_parse = strdup(buffer);
         head = tokenize_input(str_parse);
 	listt_len = list_len(head);
-        char **argv = malloc(sizeof(char *) * (listt_len + 1));
+        **argv = malloc(sizeof(char *) * (list_len(head) + 1));
 
         int i;
         for (i = 0; head != NULL; i++)
