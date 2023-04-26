@@ -28,5 +28,5 @@ void execute_command(char **argv)
         perror("fork");
         exit(-1);
     }
-    return status;
+    return;
 }
