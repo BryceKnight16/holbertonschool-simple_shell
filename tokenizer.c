@@ -14,7 +14,7 @@ char **tokenize_input(char *input, int *num_tokens)
     int i;
     char **argv;
 
-    input[strlen(input)-1] = '\0'; // add null character to terminate string
+    input[strlen(input)-1] = '\0'; 
 
     *num_tokens = 0;
     token = strtok(input, delim);
