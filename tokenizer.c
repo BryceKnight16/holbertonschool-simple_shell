@@ -30,8 +30,6 @@ char **tokenize_input(char *input, int *num_tokens)
         argv[i] = strdup(token);
         token = strtok(NULL, delim);
     }
-    printf("%s", argv[0]);
-    printf("%s", argv[1]);
     argv[i] = NULL;
 
     return argv;
