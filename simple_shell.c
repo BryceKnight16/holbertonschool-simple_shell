@@ -16,11 +16,8 @@ int main(void)
 
     while (1)
     {
-        is_interactive = isatty(STDIN_FILENO);
-        if (is_interactive)
-        {
-            printf("%s", shell_prompt);
-        }
+        printf("%s", shell_prompt);
+        buffer = read_input();
         
         if (buffer == NULL)
             break;
