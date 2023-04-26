@@ -7,7 +7,10 @@ extern char **environ;
  */
 void execute_command(char **argv)
 {
-    pid_t pid = fork();
+    pid_t pid;
+    int status;
+    
+    pid = fork();
 
     if (pid == 0)
     {
@@ -18,11 +21,12 @@ void execute_command(char **argv)
     }
     else if (pid > 0)
     {
-        wait(NULL);
+        wait(&status);
     }
     else
     {
         perror("fork");
         exit(-1);
     }
+    return status;
 }
