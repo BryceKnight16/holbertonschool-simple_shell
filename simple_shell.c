@@ -58,9 +58,8 @@ int main(void)
         str_parse = strdup(buffer);
         head = tokenize_input(str_parse);
 	listt_len = list_len(head);
-        **argv = (char *)malloc(sizeof(char *) * (list_len(head) + 1));
+        argv = malloc(sizeof(char *) * (list_len(head) + 1));
 
-        
         for (i = 0; head != NULL; i++)
         {
             argv[i] = head->str;
@@ -68,10 +67,13 @@ int main(void)
         }
         argv[i] = NULL;
 
+        execute_command(argv);
 
         free(argv);
         free(buffer);
         free_list(head);
     }
+
     return (0);
+}
 }
