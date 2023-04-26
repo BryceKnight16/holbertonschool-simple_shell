@@ -48,33 +48,38 @@ int main(void)
         buffer = read_input();
 
         if (buffer == NULL)
-	{
-		continue;
-	}
+            break;
 
-	if (strcmp(buffer, "exit\n") == 0)
+        if (strcmp(buffer, "exit\n") == 0)
         {
             free(buffer);
             break;
         }
 
-	    str_parse = strdup(buffer);
-	    head = tokenize_input(str_parse);
-	    listt_len = list_len(head);
-	    argv = malloc(sizeof(char *) * (listt_len + 1));
+        str_parse = strdup(buffer);
+        head = tokenize_input(str_parse);
+        listt_len = list_len(head);
 
-	    for (i = 0; head != NULL; i++)
-	    {
-		    argv[i] = head->str;
-		    head = head->next;
-	    }
-	    argv[i] = NULL;
+        if (head != NULL)
+        {
+            argv = malloc(sizeof(char *) * (list_len(head) + 1));
 
-	    execute_command(argv);
+            for (i = 0; head != NULL; i++)
+            {
+                argv[i] = head->str;
+                head = head->next;
+            }
+            argv[i] = NULL;
 
-	    free(argv);
-	    free(buffer);
-	    free_list(head);
+            execute_command(argv);
+
+            free(argv);
+        }
+
+        free(buffer);
+        free_list(head);
     }
+
     return (0);
 }
+
