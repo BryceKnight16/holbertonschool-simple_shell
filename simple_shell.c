@@ -25,8 +25,9 @@ int main(void)
         }
 
         tokenize_command(buffer, &parsed_argv);
+	execute_command(parsed_argv);
 
-        printf("%s\n", buffer);
+        /* printf("%s\n", buffer); */
 
         /* Free allocated memory */
         i = 0;
