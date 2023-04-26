@@ -32,7 +32,7 @@ void free_memory(char **argv, int num_tokens, char *str_parse)
 {
     int i;
     
-    for (int i = 0; i < num_tokens; i++)
+    for (i = 0; i < num_tokens; i++)
     {
         free(argv[i]);
     }
