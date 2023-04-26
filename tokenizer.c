@@ -7,15 +7,15 @@
  */
 char **tokenize(char *input)
 {
+    const char *delim = " \n";
+    int num_tokens = 0;
+    char *token;
+    
     char *str_parse = strdup(input);
     if (str_parse == NULL)
     {
         return NULL;
     }
-
-    const char *delim = " \n";
-    int num_tokens = 0;
-    char *token;
 
     token = strtok(input, delim);
     while (token != NULL)
