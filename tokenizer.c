@@ -11,6 +11,7 @@ char **tokenize(char *input)
 	int num_tokens = 0;
 	char *token;
 	char **args;
+	int i;
 
 	char *str_parse = strdup(input);
 	if (str_parse == NULL)
