@@ -1,5 +1,6 @@
 #include "simple_shell.h"
 
+extern char **environ;
 /**
  * execute_command - Executes the given command
  * @argv: The command and its arguments
