@@ -18,10 +18,10 @@ char **tokenize_input(char *input, int *num_tokens)
     token = strtok(input, delim);
     while (token != NULL)
     {
-        num_tokens ++;
+        (*num_tokens) ++;
         token = strtok(NULL, delim);
     }
-     num_tokens ++;
+     (*num_tokens) ++;
 
     argv = malloc(sizeof(char *) * (*num_tokens));
     token = strtok(input, delim);
