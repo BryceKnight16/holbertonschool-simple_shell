@@ -20,6 +20,7 @@ list_t *add_node_end(list_t **head, const char *str);
 char *read_input(void);
 list_t *tokenize_input(char *input);
 void execute_command(char **argv);
-void free_memory(char **argv, int num_tokens, char *str_parse);
+void free_list(list_t *head)
+
 
 #endif /* SIMPLE_SHELL_H */
