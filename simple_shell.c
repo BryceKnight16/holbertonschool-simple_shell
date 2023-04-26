@@ -23,6 +23,7 @@ void is_interactive(void)
 	if (isatty(STDIN_FILENO) == 1)
 	{
 		printf("$ ");
+		fflush(stdout);
 	}
 
 	return;
