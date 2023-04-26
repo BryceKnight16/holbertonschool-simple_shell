@@ -7,40 +7,43 @@
  */
 char **tokenize(char *input)
 {
-    char *str_parse = strdup(input);
-    if (str_parse == NULL)
-    {
-        return NULL;
-    }
+	const char *delim = " \n";
+	int num_tokens = 0;
+	char *token;
 
-    const char *delim = " \n";
-    int num_tokens = 0;
-    char *token;
+	char *str_parse = strdup(input);
+	if (str_parse == NULL)
+	{
+		return NULL;
+	}
 
-    token = strtok(input, delim);
-    while (token != NULL)
-    {
-        num_tokens++;
-        token = strtok(NULL, delim);
-    }
-    num_tokens++;
+	token = strtok(input, delim);
+	while (token != NULL)
+	{
+		num_tokens = num_tokens + 1;
+		token = strtok(NULL, delim);
+	}
+	num_tokens = num_tokens + 1;
 
-    char **args = malloc(sizeof(char *) * num_tokens);
-    if (args == NULL)
-    {
-        free(str_parse);
-        return NULL;
-    }
+	char **args = malloc(sizeof(char *) * num_tokens);
+	if (args == NULL)
+	{
+		free(str_parse);
+		return NULL;
+	}
 
-    token = strtok(str_parse, delim);
-    for (int i = 0; token != NULL; i++)
-    {
-        args[i] = strdup(token);
-        token = strtok(NULL, delim);
-    }
-    args[num_tokens - 1] = NULL;
+	token = strtok(str_parse, delim);
+	int i = 0;
+	while (token != NULL)
+	{
+		args[i] = strdup(token);
+		token = strtok(NULL, delim);
+		i = i + 1;
+	}
 
-    free(str_parse);
+	args[num_tokens - 1] = NULL;
 
-    return args;
+	free(str_parse);
+
+	return (args);
 }
