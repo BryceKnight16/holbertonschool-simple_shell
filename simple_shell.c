@@ -19,6 +19,12 @@ int main(void)
         if (buffer == NULL)
             break;
 
+        if (strcmp(buffer, "exit\n") == 0)
+        {
+            free(buffer);
+            break;
+        }
+
         str_parse = strdup(buffer);
         argv = tokenize_input(str_parse, &num_tokens);
         execute_command(argv);
