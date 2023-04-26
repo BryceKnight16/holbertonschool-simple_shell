@@ -79,6 +79,10 @@ $ echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_2
 $
 ```
+## Flowchart
+![image](https://user-images.githubusercontent.com/124347057/233840291-eace86c9-1ec5-49db-a417-127849e1d6df.png)
+
+
 
 ## Contributing
 
@@ -87,4 +91,6 @@ Please read the [AUTHORS](AUTHORS) file for details on our code of conduct, and 
 ## License
 
 This project is licensed under the MIT License.
+
+
 
