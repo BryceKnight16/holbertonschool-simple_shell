@@ -11,7 +11,7 @@ int main(void)
     char *str_parse = NULL;
     int num_tokens = 0;
     char **argv;
-    int is_interactive;
+
    
 
     while (1)
