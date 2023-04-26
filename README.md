@@ -80,7 +80,8 @@ hsh main.c shell.c test_ls_2
 $
 ```
 ## Flowchart
-![image](https://user-images.githubusercontent.com/124347057/233840291-eace86c9-1ec5-49db-a417-127849e1d6df.png)
+<img width="630" alt="image" src="https://user-images.githubusercontent.com/124347057/234449792-28a8c2ee-06a0-426f-8346-e20396c92df7.png">
+
 
 
 
