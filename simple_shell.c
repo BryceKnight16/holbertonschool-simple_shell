@@ -38,42 +38,40 @@ int main(void)
     char *str_parse = NULL;
     list_t *head;
     int listt_len;
-	char **argv;
-	int i;
+    char **argv;
+    int i;
 
     while (1)
     {
-	is_interactive();
-        buffer = read_input();
-	
-        if (buffer == NULL)
-            break;
+	    is_interactive();
+	    buffer = read_input();
 
-        if (strcmp(buffer, "exit\n") == 0)
-        {
-            free(buffer);
-            break;
-        }
+	    if (buffer == NULL)
+		    break;
 
-        str_parse = strdup(buffer);
-        head = tokenize_input(str_parse);
-	listt_len = list_len(head);
-        argv = malloc(sizeof(char *) * (list_len(head) + 1));
+	    if (strcmp(buffer, "exit\n") == 0)
+	    {
+		    free(buffer);
+		    break;
+	    }
 
-        for (i = 0; head != NULL; i++)
-        {
-            argv[i] = head->str;
-            head = head->next;
-        }
-        argv[i] = NULL;
+	    str_parse = strdup(buffer);
+	    head = tokenize_input(str_parse);
+	    listt_len = list_len(head);
+	    argv = malloc(sizeof(char *) * (listt_len + 1));
 
-        execute_command(argv);
+	    for (i = 0; head != NULL; i++)
+	    {
+		    argv[i] = head->str;
+		    head = head->next;
+	    }
+	    argv[i] = NULL;
 
-        free(argv);
-        free(buffer);
-        free_list(head);
+	    execute_command(argv);
+
+	    free(argv);
+	    free(buffer);
+	    free_list(head);
     }
-
     return (0);
-}
 }
