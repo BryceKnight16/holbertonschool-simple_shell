@@ -83,6 +83,7 @@ int main(void)
 
         free(buffer);
         free_list(head);
+	free(str_parse);
     }
     return (0);
 }
