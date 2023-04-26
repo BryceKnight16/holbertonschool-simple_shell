@@ -9,8 +9,7 @@ char *read_input(void)
     char *buffer = NULL;
     size_t count = 0;
     ssize_t chars_read;
-    int i;
-
+    
     chars_read = getline(&buffer, &count, stdin);
 
     if (chars_read == -1)
@@ -31,6 +30,8 @@ char *read_input(void)
  */
 void free_memory(char **argv, int num_tokens, char *str_parse)
 {
+    int i;
+    
     for (int i = 0; i < num_tokens; i++)
     {
         free(argv[i]);
