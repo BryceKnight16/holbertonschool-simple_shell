@@ -8,7 +8,7 @@
 void tokenize_command(char *buffer, char ***argv)
 {
     char *str_parse = NULL;
-    const char *delim = " ";
+    const char *delim = " \n";
     int num_tokens = 0;
     char *token;
     int i;
