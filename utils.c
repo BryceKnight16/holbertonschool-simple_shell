@@ -9,6 +9,7 @@ char *read_input(void)
     char *buffer = NULL;
     size_t count = 0;
     ssize_t chars_read;
+    int i;
 
     chars_read = getline(&buffer, &count, stdin);
 
