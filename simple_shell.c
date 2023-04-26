@@ -2,17 +2,16 @@
 
 /**
  * main - Entry point for the simple shell
- * @ac: Argument count
- * @argv: Array of arguments
  *
  * Return: 0 on success, -1 on failure
  */
-int main(int ac, char **argv)
+int main(void)
 {
     char *buffer = NULL;
     size_t count = 0;
     ssize_t chars_read;
     char **parsed_argv = NULL;
+    int i;
 
     while (1)
     {
@@ -30,11 +29,13 @@ int main(int ac, char **argv)
         printf("%s\n", buffer);
 
         /* Free allocated memory */
-        for (int i = 0; parsed_argv[i] != NULL; i++)
-        {
-            free(parsed_argv[i]);
-        }
-        free(parsed_argv);
+        i = 0;
+	while (parsed_argv[i] != NULL)
+	{
+		free(parsed_argv[i]);
+		i++;
+	}
+	free(parsed_argv);
     }
 
     free(buffer);
