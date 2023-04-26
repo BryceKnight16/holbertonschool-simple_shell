@@ -55,35 +55,43 @@ int main(void)
             break;
         }
 
-	if (strlen(buffer) > 0)
-	{
-		str_parse = strdup(buffer);
-	}
+        if (buffer != NULL && strlen(buffer) > 0)
+        {
+            str_parse = strdup(buffer);
+        }
+
+        if (str_parse == NULL)
+        {
+            free(buffer);
+            continue;
+        }
 
         head = tokenize_input(str_parse);
-	argv = malloc(sizeof(char *) * (list_len(head) + 1));
-	if (argv == NULL)
-	{
-		printf("memory sucks");
-	}
+        argv = malloc(sizeof(char *) * (list_len(head) + 1));
+
+        if (argv == NULL)
+        {
+            printf("memory sucks");
+        }
 
         if (head != NULL)
         {
-		for (i = 0; head != NULL; i++)
-		{
-			argv[i] = head->str;
-			head = head->next;
-		}
-		argv[i] = NULL;
+            for (i = 0; head != NULL; i++)
+            {
+                argv[i] = head->str;
+                head = head->next;
+            }
+            argv[i] = NULL;
 
-		execute_command(argv);
+            execute_command(argv);
 
-		free(argv);
+            free(argv);
         }
 
         free(buffer);
         free_list(head);
-	free(str_parse);
+        free(str_parse);
     }
     return (0);
+}
 }
