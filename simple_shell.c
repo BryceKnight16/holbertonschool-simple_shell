@@ -12,13 +12,14 @@ int main(void)
     int num_tokens = 0;
     char **argv;
     int is_interactive;
+    int status;
 
     while (1)
     {
         is_interactive = isatty(STDIN_FILENO);
         if (is_interactive)
         {
-            printf("%s\n", shell_prompt);
+            printf("%s", shell_prompt);
         }
         
         if (buffer == NULL)
@@ -32,10 +33,14 @@ int main(void)
 
         str_parse = strdup(buffer);
         argv = tokenize_input(str_parse, &num_tokens);
-        execute_command(argv);
+        status = execute_command(argv);
         free_memory(argv, num_tokens, str_parse);
 
         free(buffer);
+        if (!is_interactive && status != -1)
+        {
+            break;
+        }
     }
 
     return (0);
