@@ -4,7 +4,7 @@
  * main - Entry point for the simple shell
  * Return: 0 on success, -1 on failure
  */
-int main(void)
+int main(int ac, char **argv)
 {
     char *shell_prompt = "$ ";
     char *buffer = NULL;
