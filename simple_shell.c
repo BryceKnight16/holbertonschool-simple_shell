@@ -38,7 +38,6 @@ int main(void)
     char *buffer = NULL;
     char *str_parse = NULL;
     list_t *head;
-    int listt_len;
     char **argv;
     int i;
 
@@ -58,7 +57,6 @@ int main(void)
 
         str_parse = strdup(buffer);
         head = tokenize_input(str_parse);
-        listt_len = list_len(head);
 
         if (head != NULL)
         {
