@@ -6,7 +6,6 @@
  */
 int main(void)
 {
-    char *shell_prompt = "$ ";
     char *buffer = NULL;
     char *str_parse = NULL;
     int num_tokens = 0;
@@ -16,9 +15,9 @@ int main(void)
 
     while (1)
     {
-        printf("%s", shell_prompt);
+	interactive_shell();
         buffer = read_input();
-        
+	
         if (buffer == NULL)
             break;
 
