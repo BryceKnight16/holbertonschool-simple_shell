@@ -18,7 +18,7 @@ int main(void)
         is_interactive = isatty(STDIN_FILENO);
         if (is_interactive)
         {
-            printf("%s", shell_prompt);
+            printf("%s\n", shell_prompt);
         }
         
         if (buffer == NULL)
