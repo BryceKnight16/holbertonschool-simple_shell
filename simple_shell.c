@@ -12,7 +12,7 @@ int main(int ac, char **argv)
     char *buffer = NULL;
     size_t count = 0;
     ssize_t chars_read;
-    char **args;
+   
 
     while (1)
     {
@@ -25,8 +25,8 @@ int main(int ac, char **argv)
             break;
         }
 
-        char **args = tokenize(buffer);
-        if (args == NULL)
+        char argv = tokenize(buffer);
+        if (argv == NULL)
         {
             perror("memory allocation error");
             return (-1);
