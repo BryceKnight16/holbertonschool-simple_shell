@@ -3,7 +3,7 @@
  * is_interactive - check if interactive or not
  *
  * Description: check if it an interactive or not
- * Return: 
+ * Return:
  **/
 void free_list(list_t *head)
 {
@@ -37,15 +37,14 @@ int main(void)
     char *buffer = NULL;
     char *str_parse = NULL;
     list_t *head;
-    int listt_len;
-	char **argv;
-	int i;
+    char **argv;
+    int i;
 
     while (1)
     {
-	is_interactive();
+        is_interactive();
         buffer = read_input();
-	
+
         if (buffer == NULL)
             break;
 
@@ -57,7 +56,6 @@ int main(void)
 
         str_parse = strdup(buffer);
         head = tokenize_input(str_parse);
-	listt_len = list_len(head);
         argv = malloc(sizeof(char *) * (list_len(head) + 1));
 
         for (i = 0; head != NULL; i++)
@@ -75,4 +73,6 @@ int main(void)
     }
 
     return (0);
+}
+
 }
