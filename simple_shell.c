@@ -24,10 +24,9 @@ int main(void)
 {
     char *buffer = NULL;
     char *str_parse = NULL;
-    int num_tokens = 0;
-    char **argv;
+    list_t *head;
+    int i;
 
-   
 
     while (1)
     {
@@ -44,10 +43,20 @@ int main(void)
         }
 
         str_parse = strdup(buffer);
-        argv = tokenize_input(str_parse, &num_tokens);
+        head = tokenize_input(str_parse);
+	char **argv = malloc(sizeof(*argv) * (list_len(head) + 1));
+	i = 0;
+	while (head != NULL)
+	{
+		argv[i] = head->str;
+		i = i + 1;
+		head = head->next;
+	}
+	
+	/* print_list(head); */
         execute_command(argv);
-        free_memory(argv, num_tokens, str_parse);
-
+        /* free_memory(argv, num_tokens, str_parse); */
+	free(list_t);
         free(buffer);
     }
 
