@@ -43,6 +43,7 @@ char **tokenize_input(char *input, int *num_tokens)
         argv[i] = strdup(token);
         token = strtok(NULL, delim);
     }
+    printf("first argv1 %s\n cond arg %s", argv[0], argv[1]);
     argv[i] = NULL;
 
     return argv;
