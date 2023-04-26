@@ -37,7 +37,7 @@ int main(void)
         if (buffer == NULL)
             break;
 
-        if (strcmp(buffer, "exit\n") == 0)
+        if (strcmp(buffer, "exit") == 0)
         {
             free(buffer);
             break;
