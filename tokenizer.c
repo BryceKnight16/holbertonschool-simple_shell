@@ -1,46 +1,34 @@
 #include "simple_shell.h"
 
 /**
- * tokenize - Tokenizes the input string
+ * tokenize_input - Tokenizes the input string
  * @input: The input string
- * Return: The array of tokens, or NULL on failure
+ * @num_tokens: Pointer to store the number of tokens
+ * Return: A NULL-terminated array of tokens
  */
-char **tokenize(char *input)
+char **tokenize_input(char *input, int *num_tokens)
 {
-    char *str_parse = strdup(input);
-    if (str_parse == NULL)
-    {
-        return NULL;
-    }
-
     const char *delim = " \n";
-    int num_tokens = 0;
     char *token;
+    int i;
 
+    *num_tokens = 0;
     token = strtok(input, delim);
     while (token != NULL)
     {
-        num_tokens++;
+        (*num_tokens)++;
         token = strtok(NULL, delim);
     }
-    num_tokens++;
+    (*num_tokens)++;
 
-    char **args = malloc(sizeof(char *) * num_tokens);
-    if (args == NULL)
+    char **argv = malloc(sizeof(char *) * (*num_tokens));
+    token = strtok(input, delim);
+    for (i = 0; token != NULL; i++)
     {
-        free(str_parse);
-        return NULL;
-    }
-
-    token = strtok(str_parse, delim);
-    for (int i = 0; token != NULL; i++)
-    {
-        args[i] = strdup(token);
+        argv[i] = strdup(token);
         token = strtok(NULL, delim);
     }
-    args[num_tokens - 1] = NULL;
+    argv[i] = NULL;
 
-    free(str_parse);
-
-    return args;
+    return argv;
 }

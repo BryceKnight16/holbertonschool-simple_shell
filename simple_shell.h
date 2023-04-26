@@ -8,8 +8,9 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-char **tokenize(char *input);
-void execute(char **args);
-void free_args(char **args);
+char *read_input(void);
+char **tokenize_input(char *input, int *num_tokens);
+void execute_command(char **argv);
+void free_memory(char **argv, int num_tokens, char *str_parse);
 
 #endif /* SIMPLE_SHELL_H */

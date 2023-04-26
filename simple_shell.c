@@ -1,43 +1,31 @@
 #include "simple_shell.h"
 
 /**
- * main - main function for the simple shell
- * @ac: argument count
- * @argv: argument vector
+ * main - Entry point for the simple shell
  * Return: 0 on success, -1 on failure
  */
-int main(int ac, char **argv)
+int main(void)
 {
     char *shell_prompt = "$ ";
     char *buffer = NULL;
-    size_t count = 0;
-    ssize_t chars_read;
-    char **args;
+    char *str_parse = NULL;
+    int num_tokens = 0;
+    char **argv;
 
     while (1)
     {
         printf("%s", shell_prompt);
-        chars_read = getline(&buffer, &count, stdin);
-
-        if (chars_read == -1)
-        {
-            putchar('\n');
+        buffer = read_input();
+        if (buffer == NULL)
             break;
-        }
 
-        char **args = tokenize(buffer);
-        if (args == NULL)
-        {
-            perror("memory allocation error");
-            return (-1);
-        }
+        str_parse = strdup(buffer);
+        argv = tokenize_input(str_parse, &num_tokens);
+        execute_command(argv);
+        free_memory(argv, num_tokens, str_parse);
 
-        execute(args);
-
-        free_args(args);
+        free(buffer);
     }
-
-    free(buffer);
 
     return (0);
 }
