@@ -14,7 +14,6 @@ char *read_input(void)
 
     if (chars_read == -1)
     {
-        putchar('\n');
         free(buffer);
         return NULL;
     }
