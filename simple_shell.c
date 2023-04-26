@@ -1,4 +1,20 @@
 #include "simple_shell.h"
+/**
+ * is_interactive - check if interactive or not
+ *
+ * Description: check if it an interactive or not
+ * Return: 
+ **/
+
+void is_interactive(void)
+{
+	if (isatty(STDIN_FILENO) == 1)
+	{
+		printf("$ ");
+	}
+
+	return;
+}
 
 /**
  * main - Entry point for the simple shell
@@ -15,7 +31,7 @@ int main(void)
 
     while (1)
     {
-	interactive_shell();
+	is_interactive();
         buffer = read_input();
 	
         if (buffer == NULL)
