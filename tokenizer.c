@@ -10,7 +10,7 @@ char **tokenize(char *input)
 	const char *delim = " \n";
 	int num_tokens = 0;
 	char *token;
-	char **args
+	char **args;
 
 	char *str_parse = strdup(input);
 	if (str_parse == NULL)
