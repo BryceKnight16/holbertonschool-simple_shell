@@ -11,11 +11,10 @@ char **tokenize_input(char *input, int *num_tokens)
     const char *delim = " \n";
     char *token;
     int i;
-    char **argv;
-    
     char **argv = NULL;
-    *num_tokens = 0;
     
+    *num_tokens = 0;
+
     token = strtok(input, delim);
     while (token != NULL)
     {
