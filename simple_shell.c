@@ -49,7 +49,7 @@ int main(void)
 
         if (buffer == NULL)
 	{
-		break;
+		continue;
 	}
 
 	if (strcmp(buffer, "exit\n") == 0)
