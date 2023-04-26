@@ -5,6 +5,18 @@
  * Description: check if it an interactive or not
  * Return: 
  **/
+void free_list(list_t *head)
+{
+    list_t *temp;
+
+    while (head != NULL)
+    {
+        temp = head;
+        head = head->next;
+        free(temp->str);
+        free(temp);
+    }
+}
 
 void is_interactive(void)
 {
@@ -27,6 +39,7 @@ int main(void)
     list_t *head;
     int listt_len;
 	char **argv;
+	int i;
 
     while (1)
     {
@@ -45,9 +58,9 @@ int main(void)
         str_parse = strdup(buffer);
         head = tokenize_input(str_parse);
 	listt_len = list_len(head);
-        **argv = malloc(sizeof(char *) * (list_len(head) + 1));
+        **argv = (char *)malloc(sizeof(char *) * (list_len(head) + 1));
 
-        int i;
+        
         for (i = 0; head != NULL; i++)
         {
             argv[i] = head->str;
