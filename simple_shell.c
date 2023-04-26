@@ -4,7 +4,7 @@
  * main - Entry point for the simple shell
  * Return: 0 on success, -1 on failure
  */
-int main(int ac, char **argv)
+int main(void)
 {
     char *shell_prompt = "$ ";
     char *buffer = NULL;
@@ -12,7 +12,7 @@ int main(int ac, char **argv)
     int num_tokens = 0;
     char **argv;
     int is_interactive;
-    int status;
+   
 
     while (1)
     {
@@ -33,14 +33,10 @@ int main(int ac, char **argv)
 
         str_parse = strdup(buffer);
         argv = tokenize_input(str_parse, &num_tokens);
-        status = execute_command(argv);
+        execute_command(argv);
         free_memory(argv, num_tokens, str_parse);
 
         free(buffer);
-        if (!is_interactive && status != -1)
-        {
-            break;
-        }
     }
 
     return (0);
