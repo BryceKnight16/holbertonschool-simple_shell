@@ -41,7 +41,7 @@ cd holbertonschool-simple_shell
 Our repository contains a makefile, and with file it allows you to compile all of the our code to your own main.c with simple command make and when you do this it will create an executable called ./hsh
 
 Example:
-using the command make this will compile everything including your own main.c
+using the command make this will compile everything to make the executable 
 ```
 make
 ```
