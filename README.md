@@ -37,10 +37,13 @@ git clone https://github.com/your_username/holbertonschool-simple_shell.git
 ```
 cd holbertonschool-simple_shell
 ```
+3. Makefile
+Our repository contains a makefile, and with file it allows you to compile all of the our code to your own main.c with simple command make and when you do this it will create an executable called ./hsh
 
-3. Compile the source code with the following command:
+Example:
+using the command make this will compile everything including your own main.c
 ```
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+make
 ```
 
 4. Run the shell in interactive mode:
