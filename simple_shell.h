@@ -7,8 +7,10 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <errno.h>
 
+extern char **environ;
 
 /**
  * struct list_s - singly linked list
@@ -28,12 +30,13 @@ typedef struct list_s
 int _putchar(char c);
 size_t print_list(const list_t *h);
 size_t list_len(const list_t *h);
-list_t *add_node(list_t **head, const char *str);
 list_t *add_node_end(list_t **head, const char *str);
 void free_list(list_t *head);
 void is_interactive(void);
 char *read_input(void);
 list_t *tokenize_input(char *input);
 void execute_command(char **argv);
+char *_getenv(char *name);
+char *search_path(char *command);
 
 #endif /* SIMPLE_SHELL_H */
