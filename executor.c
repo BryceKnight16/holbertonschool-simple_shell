@@ -24,19 +24,23 @@ char *_getenv(char *name)
 	return (NULL);
 }
 /**
- * is_absolute_path - Function that checks if a path is absolute.
+ * is_a_path - Function that checks if a path is absolute.
  * @path: Path to check.
  *
  * Return: 1 if path is absolute, 0 otherwise.
  */
 
-int is_absolute_path(char *path)
+int is_a_path(char *path)
 {
 	if (path == NULL || strlen(path) == 0)
 	{
 		return (0);
 	}
 	if (path[0] == '/')
+	{
+		return (1);
+	}
+	if (path[0] == '.')
 	{
 		return (1);
 	}
@@ -71,7 +75,7 @@ char *search_path(char *command)
 {
 	char *path, *token, *test_path;
 
-	if (is_absolute_path(command))
+	if (is_a_path(command))
 	{
 		test_path = strdup(command);
 		if (test_path == NULL)
