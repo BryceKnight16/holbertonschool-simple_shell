@@ -94,7 +94,7 @@ Please read the [AUTHORS](AUTHORS) file for details on our code of conduct, and 
 
 ## License
 
-This project is licensed under the Holberton .
+This project is licensed under the Holberton School.
 
 
 
