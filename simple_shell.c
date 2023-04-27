@@ -28,7 +28,38 @@ void is_interactive(void)
 		fflush(stdout);
 	}
 }
+char **list_to_array(list_t *head)
+{
+	char **array;
+	int i;
 
+	array = malloc(sizeof(*array) * (list_len(head) + 1));
+
+	i = 0;
+	while (head != NULL)
+	{
+		array[i] = strdup(head->str);
+		i = i + 1;
+		head = head->next;
+	}
+	array[i] = NULL;
+	return (array);
+}
+
+void free_array(char **array)
+{
+	int i;
+
+	i = 0;
+
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i = i + 1;
+	}
+	free(array);
+
+}
 /**
  * main - Entry point for the simple shell
  * Return: 0 on success, -1 on failure
@@ -36,10 +67,8 @@ void is_interactive(void)
 int main(void)
 {
 	char *buffer = NULL;
-	char *str_parse = NULL;
 	list_t *head;
 	char **argv;
-	int i;
 
 	while (1)
 	{
@@ -55,26 +84,16 @@ int main(void)
 			break;
 		}
 
-		str_parse = strdup(buffer);
-		head = tokenize_input(str_parse);
+		head = tokenize_input(buffer);
 		if (head != NULL)
 		{
-			argv = malloc(sizeof(char *) * (list_len(head) + 1));
-
-			for (i = 0; head != NULL; i++)
-			{
-				argv[i] = head->str;
-				head = head->next;
-			}
-			argv[i] = NULL;
-
+			argv = list_to_array(head);
+			free_list(head);
 			execute_command(argv);
-
-			free(argv);
+			free_array(argv);
 		}
 
 		free(buffer);
-		free_list(head);
 	}
 
 	return (0);
