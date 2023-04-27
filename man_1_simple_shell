@@ -7,10 +7,11 @@ SYNOPSIS
        hsh
 
 DESCRIPTION
-       `hsh` is a shell program that provides an interface to execute commands. 
-       It can be used both interactively and non-interactively. When used interactively,
-       the shell reads commands from the standard input and executes them. When used 
-       non-interactively, commands are read from a file or a pipeline.
+       `hsh` is a shell program that provides an interface to execute commands.
+       It can be used both interactively and non-interactively.
+       When used interactively, the shell reads commands from the standard input
+       and executes them. When used non-interactively, commands are read from a
+       file or a pipeline.
 
        The shell implements a subset of the features provided by the standard
        POSIX shell, including:
@@ -56,14 +57,14 @@ EXAMPLES
              $ cat test_ls_2 | hsh
              hsh main.c shell.c test_ls_2
              hsh main.c shell.c test_ls_2
-             $      
+             $
 
 AUTHORS
        The `hsh` shell was written by [Sourabh Beniwal][Bryce Knight]
 
 REPORTING BUGS
-       If you encounter any bugs or issues with the `hsh` shell, please report them
-       to the Author file on GitHub.
+       If you encounter any bugs or issues with the `hsh` shell, please report
+       them to the Author file on GitHub.
 
 COPYRIGHT
-       The hsh shell is released under the Holberton License.
+       The hsh shell is released under the Holberton School License.
