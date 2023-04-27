@@ -1,27 +1,27 @@
 #include "simple_shell.h"
 
 /**
- * is_interactive - check if interactive or not
- *
- * Description: check if it an interactive or not
- * Return:
- **/
+ * free_list - Frees a linked list of strings
+ * @head: Head of the list to free
+ */
+
 void free_list(list_t *head)
 {
-    list_t *temp;
+	list_t *temp;
 
-    while (head != NULL)
-    {
-        temp = head;
-        head = head->next;
-        free(temp->str);
-        free(temp);
-    }
+	while (head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		free(temp->str);
+		free(temp);
+	}
 }
 
 /**
  * is_interactive - prints shell prompt if in interactive mode
  */
+
 void is_interactive(void)
 {
 	if (isatty(STDIN_FILENO) == 1)
@@ -30,6 +30,14 @@ void is_interactive(void)
 		fflush(stdout);
 	}
 }
+
+/**
+ * list_to_array - Converts a linked list of strings to an array of strings
+ * @head: Head of the linked list
+ *
+ * Return: Pointer to an array of strings
+ */
+
 char **list_to_array(list_t *head)
 {
 	char **array;
@@ -48,6 +56,11 @@ char **list_to_array(list_t *head)
 	return (array);
 }
 
+/**
+ * free_array - Frees an array of strings
+ * @array: Array of strings to free
+ */
+
 void free_array(char **array)
 {
 	int i;
@@ -60,12 +73,13 @@ void free_array(char **array)
 		i = i + 1;
 	}
 	free(array);
-
 }
+
 /**
  * main - Entry point for the simple shell
  * Return: 0 on success, -1 on failure
  */
+
 int main(void)
 {
 	char *buffer = NULL;
