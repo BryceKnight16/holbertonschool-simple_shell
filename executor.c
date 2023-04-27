@@ -8,12 +8,11 @@ extern char **environ;
 void execute_command(char **argv)
 {
     pid_t pid;
-    
+
     pid = fork();
 
     if (pid == 0)
     {
-        
         if (argv != NULL && execve(argv[0], argv, environ) == -1)
             printf("%s: No such file or directory\n", argv[0]);
 

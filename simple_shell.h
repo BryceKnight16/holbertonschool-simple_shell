@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <errno.h>
 
+
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
@@ -34,4 +35,5 @@ void is_interactive(void);
 char *read_input(void);
 list_t *tokenize_input(char *input);
 void execute_command(char **argv);
+
 #endif /* SIMPLE_SHELL_H */
