@@ -1,26 +1,20 @@
 CC = gcc
-
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format
-
 RM = rm -rf
-
-BETTY = betty $(SRC)
-
+BETTY = betty
 SRC = *.c
-
-NAME = shell
-
+TARGET = shell
 
 
-all:	1
 
-1:
-	$(BETTY)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+all:
+	$(BETTY) $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
 
-
+dev:
+	$(CC) $(SRC) -o $(TARGET)
 clean:
 	$(RM) *~ \#*\# \.\#* \
-        $(NAME)
+        $(TARGET)
 
 re: clean all
