@@ -38,6 +38,7 @@ int main(void)
     char *buffer = NULL;
     char *str_parse = NULL;
     list_t *head;
+    int listt_len;
     char **argv;
     int i;
 
@@ -55,35 +56,31 @@ int main(void)
             break;
         }
 
-	if (strlen(buffer) > 0)
-	{
-		str_parse = strdup(buffer);
-	}
-
+        str_parse = strdup(buffer);
         head = tokenize_input(str_parse);
-	argv = malloc(sizeof(char *) * (list_len(head) + 1));
-	if (argv == NULL)
-	{
-		printf("memory sucks");
-	}
+	if (head == NULL)
+	 {
+		 free(buffer);
+		 free(str_parse);
+		 continue;
+	 }
+        listt_len = list_len(head);
+        argv = malloc(sizeof(char *) * (listt_len + 1));
 
-        if (head != NULL)
+        for (i = 0; head != NULL; i++)
         {
-		for (i = 0; head != NULL; i++)
-		{
-			argv[i] = head->str;
-			head = head->next;
-		}
-		argv[i] = NULL;
-
-		execute_command(argv);
-
-		free(argv);
+            argv[i] = head->str;
+            head = head->next;
         }
+        argv[i] = NULL;
 
+        execute_command(argv);
+
+        free(argv);
         free(buffer);
-        free_list(head);
 	free(str_parse);
+        free_list(head);
     }
+
     return (0);
 }

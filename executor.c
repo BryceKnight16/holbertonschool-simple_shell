@@ -13,8 +13,6 @@ void execute_command(char **argv)
 
     if (pid == 0)
     {
-	printf("%s", argv[0]);
-        printf("%s", argv[1]);
         if (argv != NULL && execve(argv[0], argv, environ) == -1)
             printf("%s: No such file or directory\n", argv[0]);
 
