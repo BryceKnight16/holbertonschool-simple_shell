@@ -108,9 +108,7 @@ int main(void)
 			execute_command(argv);
 			free_array(argv);
 		}
-
 		free(buffer);
 	}
-
 	return (0);
 }
