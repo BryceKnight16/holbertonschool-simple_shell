@@ -92,7 +92,7 @@ char *search_path(char *command)
 	path = _getenv("PATH");
 	if (path == NULL)
 	{
-		return (NULL);
+		return(NULL);
 	}
 	test_path = malloc(sizeof(*test_path) * (strlen(path) + strlen(command) + 2));
 	if (test_path == NULL)
@@ -129,7 +129,7 @@ void execute_command(char **argv)
 	full_path = search_path(argv[0]);
 	if (full_path == NULL)
 	{
-		printf("%s: No such file or directory\n", argv[0]);
+		fprintf(stderr,"%s: No such file or directory\n", argv[0]);
 		return;
 	}
 	pid = fork();
@@ -137,8 +137,8 @@ void execute_command(char **argv)
 	{
 		if (execve(full_path, argv, environ) == -1)
 		{
-			perror("execve");
-			exit(EXIT_FAILURE);
+			perror("1: %s not found");
+			exit(127);
 		}
 	}
 	else if (pid > 0)
