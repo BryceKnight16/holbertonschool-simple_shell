@@ -1,22 +1,26 @@
 #include "simple_shell.h"
+
 /**
- * is_interactive - check if interactive or not
- *
- * Description: check if it an interactive or not
- * Return:
- **/
+ * free_list - Frees a linked list of strings
+ * @head: Head of the list to free
+ */
+
 void free_list(list_t *head)
 {
-    list_t *temp;
+	list_t *temp;
 
-    while (head != NULL)
-    {
-        temp = head;
-        head = head->next;
-        free(temp->str);
-        free(temp);
-    }
+	while (head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		free(temp->str);
+		free(temp);
+	}
 }
+
+/**
+ * is_interactive - prints shell prompt if in interactive mode
+ */
 
 void is_interactive(void)
 {
@@ -25,62 +29,86 @@ void is_interactive(void)
 		printf("$ ");
 		fflush(stdout);
 	}
+}
 
-	return;
+/**
+ * list_to_array - Converts a linked list of strings to an array of strings
+ * @head: Head of the linked list
+ *
+ * Return: Pointer to an array of strings
+ */
+
+char **list_to_array(list_t *head)
+{
+	char **array;
+	int i;
+
+	array = malloc(sizeof(*array) * (list_len(head) + 1));
+
+	i = 0;
+	while (head != NULL)
+	{
+		array[i] = strdup(head->str);
+		i = i + 1;
+		head = head->next;
+	}
+	array[i] = NULL;
+	return (array);
+}
+
+/**
+ * free_array - Frees an array of strings
+ * @array: Array of strings to free
+ */
+
+void free_array(char **array)
+{
+	int i;
+
+	i = 0;
+
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i = i + 1;
+	}
+	free(array);
 }
 
 /**
  * main - Entry point for the simple shell
  * Return: 0 on success, -1 on failure
  */
+
 int main(void)
 {
-    char *buffer = NULL;
-    char *str_parse = NULL;
-    list_t *head;
-    int listt_len;
-    char **argv;
-    int i;
+	char *buffer = NULL;
+	list_t *head;
+	char **argv;
 
-    while (1)
-    {
-        is_interactive();
-        buffer = read_input();
+	while (1)
+	{
+		is_interactive();
+		buffer = read_input();
 
-        if (buffer == NULL)
-            break;
+		if (buffer == NULL)
+			break;
 
-        if (strcmp(buffer, "exit\n") == 0)
-        {
-            free(buffer);
-            break;
-        }
+		if (strcmp(buffer, "exit\n") == 0)
+		{
+			free(buffer);
+			break;
+		}
 
-        str_parse = strdup(buffer);
-        head = tokenize_input(str_parse);
-	if (head == NULL)
-	 {
-		 free(buffer);
-		 free(str_parse);
-		 continue;
-	 }
-        listt_len = list_len(head);
-        argv = malloc(sizeof(char *) * (listt_len + 1));
-
-        for (i = 0; head != NULL; i++)
-        {
-            argv[i] = head->str;
-            head = head->next;
-        }
-        argv[i] = NULL;
-
-        execute_command(argv);
-
-        free(argv);
-        free(buffer);
-	free(str_parse);
-        free_list(head);
-    }
-
-    return (0);
+		head = tokenize_input(buffer);
+		if (head != NULL)
+		{
+			argv = list_to_array(head);
+			free_list(head);
+			execute_command(argv);
+			free_array(argv);
+		}
+		free(buffer);
+	}
+	return (0);
 }
