@@ -125,12 +125,11 @@ void execute_command(char **argv)
 {
 	pid_t pid;
 	char *full_path = NULL;
-	char *program_name = "./hsh";
 
 	full_path = search_path(argv[0]);
 	if (full_path == NULL)
 	{
-		fprintf(stderr, "%s: 1: %s: not found\n", program_name, argv[0]);
+		fprintf(stderr, "./hsh: 1: %s: not found\n", argv[0]);
 		exit(127);
 	}
 
