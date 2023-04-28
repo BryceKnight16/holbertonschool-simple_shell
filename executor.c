@@ -129,9 +129,10 @@ void execute_command(char **argv)
 	full_path = search_path(argv[0]);
 	if (full_path == NULL)
 	{
-		printf("%s: No such file or directory\n", argv[0]);
-		return;
+		fprintf(stderr, "%s: not found\n", argv[0]);
+		exit(127);
 	}
+
 	pid = fork();
 	if (pid == 0)
 	{
