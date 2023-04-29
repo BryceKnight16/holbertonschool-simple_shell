@@ -87,8 +87,10 @@ int main(int argc, char *argv[])
     char **args;
     char *shell_name = argv[0];
     int exit_code;
+	
 
     (void)argc;
+	exit_code = 0;
 
     while (1)
     {
