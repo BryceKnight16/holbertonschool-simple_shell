@@ -86,12 +86,11 @@ int main(int argc, char *argv[])
     list_t *head;
     char **args;
     char *shell_name = argv[0];
-    int exit_code = 0;
-    int cmd_return;
+    int exit_code;
 
     (void)argc;
 
-    while (exit_code == 0)
+    while (1)
     {
         is_interactive();
         buffer = read_input();
@@ -107,18 +106,15 @@ int main(int argc, char *argv[])
 
         head = tokenize_input(buffer);
         if (head != NULL)
-        { 
+        {
             args = list_to_array(head);
             free_list(head);
-            cmd_return = execute_command(args, shell_name, 1); 
-            if (cmd_return != 127) 
-			{ 
-                exit_code = cmd_return;
-            }
+            exit_code = execute_command(args, shell_name);
             free_array(args);
         }
         free(buffer);
     }
-    return (exit_code); 
+    return (exit_code);
 }
+
 
