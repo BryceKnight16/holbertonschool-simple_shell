@@ -89,11 +89,23 @@ char *search_path(char *command)
 		free(test_path);
 		return (NULL);
 	}
+
 	path = _getenv("PATH");
-	if (path == NULL)
+	/* 
+    if (path == NULL)
 	{
 		return(NULL);
 	}
+    */
+    if (path == NULL || strlen(path) == 0)
+    {
+        if (is_executable(command))
+        {
+            return strdup(command);
+        }
+        return(NULL);
+    }
+    
 	test_path = malloc(sizeof(*test_path) * (strlen(path) + strlen(command) + 2));
 	if (test_path == NULL)
 	{
