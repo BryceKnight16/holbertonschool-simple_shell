@@ -133,16 +133,18 @@ char *search_path(char *command)
  * @argv: Array of arguments.
  */
 
-void execute_command(char **argv)
+int execute_command(char **argv, char *shell_name, int command_num)
 {
 	pid_t pid;
 	char *full_path = NULL;
 
+    
+
 	full_path = search_path(argv[0]);
 	if (full_path == NULL)
 	{
-		fprintf(stderr, "%s 1: %s: not found\n", argv[2], argv[0]);
-		exit(127);
+		fprintf(stderr, "%s: %d: %s: not found\n", shell_name, command_num, argv[0]);
+		 return(127);
 	}
 
 	pid = fork();
@@ -165,4 +167,5 @@ void execute_command(char **argv)
 		free(full_path);
 		exit(-1);
 	}
+    return 0;
 }
