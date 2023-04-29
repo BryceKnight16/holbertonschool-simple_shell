@@ -35,8 +35,9 @@ void free_list(list_t *head);
 void is_interactive(void);
 char *read_input(void);
 list_t *tokenize_input(char *input);
-int execute_command(char **argv, char *shell_name, int command_num);
+int execute_command(char **argv, char *shell_name);
 char *_getenv(char *name);
 char *search_path(char *command);
 
 #endif /* SIMPLE_SHELL_H */
+
