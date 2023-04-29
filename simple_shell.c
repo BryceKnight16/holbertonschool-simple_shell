@@ -112,13 +112,13 @@ int main(int argc, char *argv[])
             free_list(head);
             cmd_return = execute_command(args, shell_name, 1); 
             if (cmd_return != 127) 
-			{
+			{ 
                 exit_code = cmd_return;
             }
             free_array(args);
         }
         free(buffer);
     }
-    return (0);
+    return (exit_code); 
 }
 
