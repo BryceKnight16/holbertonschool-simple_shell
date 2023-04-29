@@ -105,7 +105,7 @@ char *search_path(char *command)
         }
         return(NULL);
     }
-    
+
 	test_path = malloc(sizeof(*test_path) * (strlen(path) + strlen(command) + 2));
 	if (test_path == NULL)
 	{
