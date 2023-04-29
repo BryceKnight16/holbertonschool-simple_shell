@@ -38,6 +38,6 @@ list_t *tokenize_input(char *input);
 int execute_command(char **argv, char *shell_name);
 char *_getenv(char *name);
 char *search_path(char *command);
+void print_env(void);
 
 #endif /* SIMPLE_SHELL_H */
-

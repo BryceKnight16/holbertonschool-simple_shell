@@ -92,11 +92,11 @@ char *search_path(char *command)
 
 	path = _getenv("PATH");
 	/* 
-    if (path == NULL)
-	{
-		return(NULL);
-	}
-    */
+	   if (path == NULL)
+	   {
+	   return(NULL);
+	   }
+	*/
     if (path == NULL || strlen(path) == 0)
     {
         if (is_executable(command))
@@ -137,16 +137,16 @@ int execute_command(char **argv, char *shell_name)
 {
     pid_t pid;
     char *full_path = NULL;
-	
-	if (strcmp(argv[0], "exit") == 0)
+
+    if (strcmp(argv[0], "exit") == 0)
     {
-        _exit(0);
+	    _exit(0);
     }
 
     if (strcmp(argv[0], "env") == 0)
     {
-        print_env();
-        return (0);
+	    print_env();
+	    return (0);
     }
 
     full_path = search_path(argv[0]);
