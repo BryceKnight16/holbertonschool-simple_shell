@@ -80,35 +80,44 @@ void free_array(char **array)
  * Return: 0 on success, -1 on failure
  */
 
-int main(void)
+int main(int argc, char *argv[])
 {
-	char *buffer = NULL;
-	list_t *head;
-	char **argv;
+    char *buffer = NULL;
+    list_t *head;
+    char **args;
+    char *shell_name = argv[0];
+    int exit_code = 0;
+    int cmd_return;
 
-	while (1)
-	{
-		is_interactive();
-		buffer = read_input();
+    (void)argc;
 
-		if (buffer == NULL)
-			break;
+    while (exit_code == 0)
+    {
+        is_interactive();
+        buffer = read_input();
 
-		if (strcmp(buffer, "exit\n") == 0)
-		{
-			free(buffer);
-			break;
-		}
+        if (buffer == NULL)
+            break;
 
-		head = tokenize_input(buffer);
-		if (head != NULL)
-		{
-			argv = list_to_array(head);
-			free_list(head);
-			execute_command(argv);
-			free_array(argv);
-		}
-		free(buffer);
-	}
-	return (0);
+        if (strcmp(buffer, "exit\n") == 0)
+        {
+            free(buffer);
+            break;
+        }
+
+        head = tokenize_input(buffer);
+        if (head != NULL)
+        { 
+            args = list_to_array(head);
+            free_list(head);
+            cmd_return = execute_command(args, shell_name, 1); 
+            if (cmd_return != 127) 
+			{
+                exit_code = cmd_return;
+            }
+            free_array(args);
+        }
+        free(buffer);
+    }
+    return (0);
 }
