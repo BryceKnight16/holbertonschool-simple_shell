@@ -133,39 +133,47 @@ char *search_path(char *command)
  * @argv: Array of arguments.
  */
 
-int execute_command(char **argv, char *shell_name, int command_num)
+int execute_command(char **argv, char *shell_name)
 {
-	pid_t pid;
-	char *full_path = NULL;
+    pid_t pid;
+    char *full_path = NULL;
 
-    
+    full_path = search_path(argv[0]);
+    if (full_path == NULL)
+    {
+        fprintf(stderr, "%s: 1: %s: not found\n", shell_name, argv[0]);
+        return (127);
+    }
 
-	full_path = search_path(argv[0]);
-	if (full_path == NULL)
-	{
-		fprintf(stderr, "%s: %d: %s: not found\n", shell_name, command_num, argv[0]);
-		 return(127);
-	}
-
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execve(full_path, argv, environ) == -1)
-		{
-			perror("execve");
-			exit(127);
-		}
-	}
-	else if (pid > 0)
-	{
-		wait(NULL);
-		free(full_path);
-	}
-	else
-	{
-		perror("fork");
-		free(full_path);
-		exit(-1);
-	}
+    pid = fork();
+    if (pid == 0)
+    {
+        if (execve(full_path, argv, environ) == -1)
+        {
+            perror("execve");
+            return (127);
+        }
+    }
+    else if (pid > 0)
+    {
+        int status;
+        wait(&status);
+        free(full_path);
+        if (WIFEXITED(status))
+        {
+            return (WEXITSTATUS(status));
+        }
+        else
+        {
+            return (128 + WTERMSIG(status));
+        }
+    }
+    else
+    {
+        perror("fork");
+        free(full_path);
+        return (-1);
+    }
     return 0;
 }
+
