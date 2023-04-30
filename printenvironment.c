@@ -5,13 +5,12 @@
  */
 void print_env(void)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (environ[i] != NULL)
-    {
-        printf("%s\n", environ[i]);
-        i++;
-    }
+	i = 0;
+	while (environ[i] != NULL)
+	{
+		printf("%s\n", environ[i]);
+		i = i + 1;
+	}
 }
-
