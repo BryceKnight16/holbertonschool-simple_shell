@@ -77,45 +77,46 @@ void free_array(char **array)
 
 /**
  * main - Entry point for the simple shell
+ * @argv: users input.
+ * @argc: unused.
  * Return: 0 on success, -1 on failure
  */
 
-int main(int argc, char *argv[])
+int main(__attribute__((unused))int argc, char *argv[])
 {
-    char *buffer = NULL;
-    list_t *head;
-    char **args;
-    char *shell_name = argv[0];
-    int exit_code;
+	char *buffer = NULL;
+	list_t *head;
+	char **args;
+	char *shell_name = argv[0];
+	int exit_code;
+	(void)argc;
 
-    (void)argc;
-    exit_code = 0;
+	exit_code = 0;
 
-    while (1)
-    {
-        is_interactive();
-        buffer = read_input();
+	while (1)
+	{
+		is_interactive();
+		buffer = read_input();
 
-        if (buffer == NULL)
-            break;
+		if (buffer == NULL)
+		{
+			break;
+		}
+		if (strcmp(buffer, "exit\n") == 0)
+		{
+			free(buffer);
+			break;
+		}
 
-        if (strcmp(buffer, "exit\n") == 0)
-        {
-            free(buffer);
-            break;
-        }
-
-        head = tokenize_input(buffer);
-        if (head != NULL)
-        {
-            args = list_to_array(head);
-            free_list(head);
-            exit_code = execute_command(args, shell_name);
-            free_array(args);
-        }
-        free(buffer);
-    }
-    return (exit_code);
+		head = tokenize_input(buffer);
+		if (head != NULL)
+		{
+			args = list_to_array(head);
+			free_list(head);
+			exit_code = execute_command(args, shell_name);
+			free_array(args);
+		}
+		free(buffer);
+	}
+	return (exit_code);
 }
-
-
