@@ -71,6 +71,10 @@ The project includes a Makefile that simplifies the compilation process. Here ar
 - `make clean`: Remove object files
 - `make re`: Perform a clean recompilation
 
+## Flowchart
+<img width="630" alt="image" src="https://user-images.githubusercontent.com/124347057/234449792-28a8c2ee-06a0-426f-8346-e20396c92df7.png">
+
+
 ## Contributing
 Please read the [AUTHORS](AUTHORS) file for details on our code of conduct, and the process for submitting pull requests.
 
