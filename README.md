@@ -1,100 +1,82 @@
-# Simple Shell in C
+# Holberton School Simple Shell
 
-This project is a simple UNIX command line interpreter written in C. The shell can handle basic commands and functionality, such as executing programs, handling arguments, and managing the PATH.
+This is a simple Unix shell implementation developed as part of the curriculum at Holberton School. The shell supports both interactive and non-interactive modes, basic command execution, including built-in commands and external commands.
 
-## Resources
-- Unix shell
-- Thompson shell
-- Ken Thompson
-- Everything you need to know to start coding your own shell concept page
+## Getting Started
 
-## Learning Objectives
-- Who designed and implemented the original Unix operating system
-- Who wrote the first version of the UNIX shell
-- Who invented the B programming language (the direct predecessor to the C programming language)
-- Who is Ken Thompson
-- How does a shell work
-- What is a pid and a ppid
-- How to manipulate the environment of the current process
-- What is the difference between a function and a system call
-- How to create processes
-- What are the three prototypes of main
-- How does the shell use the PATH to find the programs
-- How to execute another program with the execve system call
-- How to suspend the execution of a process until one of its children terminates
-- What is EOF / “end-of-file”?
+To get a copy of the simple shell up and running on your local machine, you can clone the repository using the following command:
 
-## Installation
-
-To install and use this simple shell, follow these steps:
-
-1. Clone the repository:
 ```
-git clone https://github.com/your_username/holbertonschool-simple_shell.git
+git clone https://github.com/BryceKnight16/holbertonschool-simple_shell.git
 ```
 
-2. Change to the project directory:
-```
-cd holbertonschool-simple_shell
-```
-3. Makefile
-Our repository contains a makefile, and with file it allows you to compile all of the our code to your own main.c with simple command make and when you do this it will create an executable called ./hsh
+## Features
 
-Example:
-using the command make this will compile everything to make the executable 
+- Interactive command execution
+- Non-interactive command execution
+- Executing commands from a file
+- Handling command arguments
+- Environment variable expansion
+- Error handling and exit status
+- Signal handling (Ctrl+C)
+- Custom prompt display
+
+## Usage
+
+### Interactive Mode
+
+To compile the shell, navigate to the project directory and use the following command:
+
 ```
 make
 ```
 
-4. Run the shell in interactive mode:
+This will compile the shell and create an executable file named `hsh`.
+
+Once the shell has been compiled successfully, you can run it in interactive mode by executing the following command:
+
 ```
 ./hsh
 ```
 
-5. Alternatively, you can run the shell in non-interactive mode:
+You will then be presented with a command prompt `$`, where you can start entering commands.
+
+### Non-Interactive Mode
+
+To run the shell in non-interactive mode, you can pass a file containing commands as an argument to the shell executable. For example:
+
 ```
 echo "/bin/ls" | ./hsh
 ```
 
-## Usage
+This will execute the commands present in `/bin/ls` and then exit the shell.
 
-The simple shell can be used in both interactive and non-interactive mode. In interactive mode, the shell will display a prompt and wait for the user to type a command. In non-interactive mode, the shell can be used by piping commands to it.
+## Built-in Commands
 
-This shell supports basic commands, handles command line arguments, manages the PATH, and implements `exit` and `env` built-ins.
+The shell supports the following built-in commands:
 
-### Example
+- `exit`: Exit the shell
+- `env`: Print the current environment
+- `pwd`: Show the path of the current working directory
 
-Here is an example of using the shell in interactive mode:
+## External Commands
 
-```
-$ ./hsh
-($) /bin/ls
-hsh main.c shell.c
-($)
-($) exit
-$
-```
+The shell is capable of executing external commands by searching for the corresponding executable files in the directories listed in the `PATH` environment variable. It uses the `execve` system call to launch external programs.
 
-And in non-interactive mode:
+## Makefile
 
-```
-$ echo "/bin/ls" | ./hsh
-hsh main.c shell.c test_ls_2
-$
-```
-## Flowchart
-<img width="630" alt="image" src="https://user-images.githubusercontent.com/124347057/234449792-28a8c2ee-06a0-426f-8346-e20396c92df7.png">
+The project includes a Makefile that simplifies the compilation process. Here are some useful commands:
 
-
-
+- `make`: Compile the shell
+- `make clean`: Remove object files
+- `make re`: Perform a clean recompilation
 
 ## Contributing
-
 Please read the [AUTHORS](AUTHORS) file for details on our code of conduct, and the process for submitting pull requests.
 
 ## License
 
-This project is licensed under the Holberton School.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
 
